@@ -40,7 +40,7 @@ const STATS = [
   { value: "2063", label: "Est. B.S.", suffix: "" },
   { value: "PG–12", label: "Grade Range", suffix: "" },
   { value: "2000+", label: "Students", suffix: "" },
-  { value: "60+", label: "Qualified Staff", suffix: "" },
+  { value: "150+", label: "Qualified Staff", suffix: "" },
 ];
 
 const FACILITIES_DATA = [
@@ -568,7 +568,7 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
             Journey With Us
           </h2>
           <p className="text-white/80 text-base mb-8 max-w-xl mx-auto">
-            Admissions for 2081 B.S. are open. Reach out to our team for enquiries, a campus tour, or admission guidance.
+            Admissions for 2083 B.S. are open. Reach out to our team for enquiries, a campus tour, or admission guidance.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <button
@@ -1302,7 +1302,7 @@ function ContactPage() {
                     label: "Address",
                     text: "Ring Road, Attariya, Kailali\nGodawari-2, Sudurpashchim Province\nNepal",
                   },
-                  { icon: Phone, label: "Phone", text: "+977-091-XXXXXX\n+977-98XXXXXXXX" },
+                  { icon: Phone, label: "Phone", text: "+977-091-551236\n+977-9865709200" },
                   { icon: Mail, label: "Email", text: "info@satyawatiacademy.edu.np\nadmissions@satyawatiacademy.edu.np" },
                 ].map((c) => (
                   <div key={c.label} className="flex gap-4">
@@ -1535,7 +1535,7 @@ function Footer({ setPage }: { setPage: (p: Page) => void }) {
               </div>
               <div className="flex gap-2 items-center">
                 <Phone className="w-4 h-4 text-accent flex-shrink-0" />
-                <span>+977-091-XXXXXX</span>
+                <span>+977-091-551236</span>
               </div>
               <div className="flex gap-2 items-center">
                 <Mail className="w-4 h-4 text-accent flex-shrink-0" />
@@ -1547,7 +1547,7 @@ function Footer({ setPage }: { setPage: (p: Page) => void }) {
 
         <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-white/40">
-            © 2081 B.S. Satyawati Academy Kailali. All rights reserved.
+            © 2083 B.S. Satyawati Academy Kailali. All rights reserved.
           </p>
           <p className="text-xs text-white/30">
             Best school in Kailali · Best school in Attariya · +2 Science Nepal
