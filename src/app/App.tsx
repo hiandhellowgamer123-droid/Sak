@@ -1,4 +1,12 @@
 import { useState, useEffect, useRef } from "react";
+import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
+import img4229 from "@/imports/IMG_4229.JPG";
+import img4230 from "@/imports/IMG_4230.JPG";
+import img4231 from "@/imports/IMG_4231.JPG";
+import img4232 from "@/imports/IMG_4232.JPG";
+import img4233 from "@/imports/IMG_4233.JPG";
+import img4234 from "@/imports/IMG_4234.JPG";
+import img4235 from "@/imports/IMG_4235.jpg";
 import {
   Menu,
   X,
@@ -109,7 +117,9 @@ const TESTIMONIALS = [
   },
 ];
 
-const GALLERY_ITEMS = [
+type GalleryItem = { id: number; category: string; url: string; alt: string; label: string; rotate?: number };
+
+const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: 1,
     category: "events",
@@ -172,6 +182,22 @@ const GALLERY_ITEMS = [
     url: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600&h=400&fit=crop&auto=format",
     alt: "Cultural programme with students performing",
     label: "Cultural Programme 2080",
+  },
+  {
+    id: 10,
+    category: "classrooms",
+    url: img4231 as unknown as string,
+    alt: "Satyawati Academy five-storey +2 building and campus",
+    label: "The +2 Building",
+    rotate: 180,
+  },
+  {
+    id: 11,
+    category: "events",
+    url: img4232 as unknown as string,
+    alt: "Sudurpashchim region display board at Satyawati Academy",
+    label: "Regional Knowledge Board",
+    rotate: -90,
   },
 ];
 
@@ -317,9 +343,9 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
       {/* Hero */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1562774053-701939374585?w=1600&h=900&fit=crop&auto=format"
-            alt="School campus with students"
+          <ImageWithFallback
+            src={img4235}
+            alt="Satyawati Academy campus at golden hour, Attariya Kailali"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(15,45,92,0.88) 0%, rgba(26,92,56,0.75) 100%)" }} />
@@ -490,9 +516,9 @@ function HomePage({ setPage }: { setPage: (p: Page) => void }) {
             </div>
 
             <div className="relative">
-              <img
-                src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=700&h=500&fit=crop&auto=format"
-                alt="Students engaged in classroom learning"
+              <ImageWithFallback
+                src={img4229}
+                alt="Satyawati Academy tree-lined courtyard with brick pathway and garden pots"
                 className="rounded-2xl w-full object-cover"
                 style={{ height: 380 }}
               />
@@ -650,12 +676,14 @@ function AboutPage() {
               </p>
             </div>
             <div className="relative">
-              <img
-                src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=700&h=500&fit=crop&auto=format"
-                alt="School building and campus"
-                className="rounded-2xl w-full object-cover shadow-lg"
-                style={{ height: 380 }}
-              />
+              <div className="rounded-2xl overflow-hidden shadow-lg bg-muted" style={{ height: 380 }}>
+                <ImageWithFallback
+                  src={img4230}
+                  alt="Satyawati Academy three-storey school building exterior, Attariya Kailali"
+                  className="w-full h-full object-cover"
+                  style={{ transform: "rotate(-90deg) scale(1.5)", transformOrigin: "center center" }}
+                />
+              </div>
               <div className="absolute -bottom-4 -right-4 bg-primary rounded-xl p-5 text-white shadow-xl">
                 <div
                   className="text-2xl font-bold"
@@ -920,6 +948,14 @@ function AcademicsPage() {
             <div>
               {activeLevel === "plus2" && "streams" in current && current.streams ? (
                 <div className="flex flex-col gap-5">
+                  <div className="rounded-2xl overflow-hidden shadow-md bg-muted mb-1" style={{ height: 200 }}>
+                    <ImageWithFallback
+                      src={img4231}
+                      alt="Satyawati Academy five-storey +2 building"
+                      className="w-full h-full object-cover"
+                      style={{ transform: "rotate(180deg) scale(1.05)", transformOrigin: "center center" }}
+                    />
+                  </div>
                   {current.streams.map((stream) => (
                     <div key={stream.name} className={`rounded-2xl p-6 border ${stream.color}`}>
                       <div className="flex items-center gap-3 mb-4">
@@ -941,13 +977,9 @@ function AcademicsPage() {
                 </div>
               ) : (
                 <div className="relative rounded-2xl overflow-hidden shadow-lg">
-                  <img
-                    src={
-                      activeLevel === "primary"
-                        ? "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=700&h=500&fit=crop&auto=format"
-                        : "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=700&h=500&fit=crop&auto=format"
-                    }
-                    alt={activeLevel === "primary" ? "Young students learning in classroom" : "Secondary students in class"}
+                  <ImageWithFallback
+                    src={activeLevel === "primary" ? img4234 : img4229}
+                    alt={activeLevel === "primary" ? "Satyawati Academy primary school block with colourful cartoon murals" : "Satyawati Academy campus courtyard"}
                     className="w-full object-cover"
                     style={{ height: 360 }}
                   />
@@ -1032,8 +1064,8 @@ function FacilitiesPage() {
     {
       title: "Playground & Futsal Ground",
       icon: Dumbbell,
-      img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=500&fit=crop&auto=format",
-      imgAlt: "Students playing sports on school ground",
+      img: img4233 as unknown as string,
+      imgAlt: "Satyawati Academy welcome board listing sports: football, volleyball, cricket, badminton, table tennis, basketball, athletics",
       desc: "Our spacious campus includes a large open playground and a dedicated futsal court. Physical fitness and team sports are central to life at Satyawati Academy.",
       features: ["Professional futsal ground", "Large open playground for cricket, athletics, and games", "Physical Education as a core subject", "Annual Sports Day and inter-house competitions"],
       tag: "Spacious Campus",
@@ -1085,7 +1117,7 @@ function FacilitiesPage() {
               >
                 <div className={i % 2 === 1 ? "lg:order-2" : ""}>
                   <div className="relative rounded-2xl overflow-hidden shadow-lg group">
-                    <img
+                    <ImageWithFallback
                       src={f.img}
                       alt={f.imgAlt}
                       className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -1134,7 +1166,7 @@ function FacilitiesPage() {
 
 function GalleryPage() {
   const [filter, setFilter] = useState<GalleryFilter>("all");
-  const [lightbox, setLightbox] = useState<null | typeof GALLERY_ITEMS[0]>(null);
+  const [lightbox, setLightbox] = useState<null | GalleryItem>(null);
 
   const filtered = filter === "all" ? GALLERY_ITEMS : GALLERY_ITEMS.filter((g) => g.category === filter);
 
@@ -1194,15 +1226,17 @@ function GalleryPage() {
             {filtered.map((item) => (
               <button
                 key={item.id}
-                className="relative rounded-2xl overflow-hidden group text-left shadow-sm hover:shadow-lg transition-shadow duration-300"
+                className="relative rounded-2xl overflow-hidden group text-left shadow-sm hover:shadow-lg transition-shadow duration-300 bg-muted"
                 onClick={() => setLightbox(item)}
               >
-                <img
-                  src={item.url}
-                  alt={item.alt}
-                  className="w-full object-cover transition-transform duration-500 group-hover:scale-105 bg-muted"
-                  style={{ height: 240 }}
-                />
+                <div className="overflow-hidden" style={{ height: 240 }}>
+                  <img
+                    src={item.url}
+                    alt={item.alt}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    style={item.rotate ? { transform: `rotate(${item.rotate}deg) scale(${Math.abs(item.rotate) === 90 ? 1.5 : 1.05})`, transformOrigin: "center center" } : undefined}
+                  />
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
                   <span className="text-xs font-semibold uppercase tracking-widest text-accent mb-1 block">
@@ -1226,12 +1260,17 @@ function GalleryPage() {
             className="relative max-w-3xl w-full bg-card rounded-2xl overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
-              src={lightbox.url.replace("w=600", "w=900").replace("h=400", "h=600")}
-              alt={lightbox.alt}
-              className="w-full object-cover"
-              style={{ maxHeight: 500 }}
-            />
+            <div className="overflow-hidden" style={{ maxHeight: 500 }}>
+              <img
+                src={lightbox.url.replace("w=600", "w=900").replace("h=400", "h=600")}
+                alt={lightbox.alt}
+                className="w-full object-cover"
+                style={{
+                  maxHeight: 500,
+                  ...(lightbox.rotate ? { transform: `rotate(${lightbox.rotate}deg) scale(${Math.abs(lightbox.rotate) === 90 ? 1.5 : 1.05})` } : {}),
+                }}
+              />
+            </div>
             <div className="p-5 flex items-center justify-between">
               <div>
                 <span className="text-xs font-semibold uppercase tracking-widest text-primary">{lightbox.category}</span>
